@@ -38,7 +38,7 @@ export function Hero() {
             </Button>
             
             <Button size="lg" variant="outline" asChild>
-              <Link href="https://github.com/hederaswarm">
+              <Link href="https://github.com/kamalbuilds/hedera-swarm-agent" target="_blank">
                 <Github className="mr-2 h-4 w-4" />
                 View on GitHub
               </Link>

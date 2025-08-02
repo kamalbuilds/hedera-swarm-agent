@@ -78,7 +78,7 @@ HederaSwarm revolutionizes AI agent collaboration by creating a decentralized ec
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/hedera-swarm.git
+git clone https://github.com/kamalbuilds/hedera-swarm-agent
 cd hedera-swarm
 
 # Install dependencies

@@ -1,0 +1,11 @@
+{
+  "network": "testnet",
+  "timestamp": "2025-08-05T13:11:24.253Z",
+  "topics": {
+    "swarm-tasks": "0.0.6501825",
+    "swarm-consensus": "0.0.6501828",
+    "swarm-knowledge": "0.0.6501830",
+    "swarm-reputation": "0.0.6501831"
+  },
+  "operator": "0.0.4729347"
+}
