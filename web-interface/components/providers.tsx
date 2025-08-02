@@ -2,6 +2,7 @@
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ThemeProvider } from 'next-themes'
+import { WalletProvider } from '@/contexts/WalletContext'
 import { useState } from 'react'
 
 export function Providers({ children }: { children: React.ReactNode }) {
@@ -22,7 +23,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
         enableSystem
         disableTransitionOnChange
       >
-        {children}
+        <WalletProvider>
+          {children}
+        </WalletProvider>
       </ThemeProvider>
     </QueryClientProvider>
   )

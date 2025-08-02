@@ -1,35 +1,17 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
+import { WalletConnectButton } from '@/components/wallet/WalletConnectButton'
+import { useWallet } from '@/hooks/useWallet'
 import { 
   Brain, 
-  Menu, 
-  Wallet, 
-  Settings, 
-  LogOut,
   Plus,
   Activity
 } from 'lucide-react'
 import Link from 'next/link'
-import { useState } from 'react'
 
 export function Header() {
-  const [isConnected, setIsConnected] = useState(false)
-  const [accountId, setAccountId] = useState<string>('')
-
-  const connectWallet = async () => {
-    // In production, integrate with HashPack or MetaMask
-    setIsConnected(true)
-    setAccountId('0.0.12345')
-  }
+  const { isConnected } = useWallet()
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -70,7 +52,7 @@ export function Header() {
         </div>
         
         <div className="ml-auto flex items-center space-x-4">
-          {isConnected ? (
+          {isConnected && (
             <>
               <Button variant="outline" size="sm" asChild>
                 <Link href="/create-agent">
@@ -79,37 +61,16 @@ export function Header() {
                 </Link>
               </Button>
               
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="outline" size="sm">
-                    <Wallet className="mr-2 h-4 w-4" />
-                    {accountId.slice(0, 8)}...
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem>
-                    <Activity className="mr-2 h-4 w-4" />
-                    Dashboard
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <Settings className="mr-2 h-4 w-4" />
-                    Settings
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={() => setIsConnected(false)}>
-                    <LogOut className="mr-2 h-4 w-4" />
-                    Disconnect
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+              <Button variant="outline" size="sm" asChild>
+                <Link href="/dashboard">
+                  <Activity className="mr-2 h-4 w-4" />
+                  Dashboard
+                </Link>
+              </Button>
             </>
-          ) : (
-            <Button onClick={connectWallet} variant="gradient">
-              Connect Wallet
-            </Button>
           )}
+          
+          <WalletConnectButton />
         </div>
       </div>
     </header>
