@@ -1,0 +1,33 @@
+{
+  "name": "@hedera-swarm/agent-sdk",
+  "version": "1.0.0",
+  "description": "SDK for building HederaSwarm agents",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "jest",
+    "lint": "eslint src/**/*.ts"
+  },
+  "dependencies": {
+    "@hashgraph/sdk": "^2.45.0",
+    "hedera-agent-kit": "^1.0.0",
+    "@langchain/core": "^0.1.0",
+    "@langchain/openai": "^0.0.25",
+    "langchain": "^0.1.0",
+    "@elizaos/core": "^0.1.0",
+    "ipfs-http-client": "^60.0.0",
+    "ethers": "^6.0.0",
+    "dotenv": "^16.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "jest": "^29.0.0",
+    "ts-jest": "^29.0.0",
+    "typescript": "^5.0.0"
+  }
+}
