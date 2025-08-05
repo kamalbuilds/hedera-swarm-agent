@@ -4,7 +4,6 @@ pragma solidity ^0.8.20;
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/utils/Counters.sol";
 import "./interfaces/IHederaTokenService.sol";
 
 /**
@@ -12,9 +11,7 @@ import "./interfaces/IHederaTokenService.sol";
  * @dev Manages agent DNA as NFTs with genetic programming capabilities
  */
 contract EvolutionEngine is ERC721, ERC721URIStorage, Ownable {
-    using Counters for Counters.Counter;
-    
-    Counters.Counter private _tokenIdCounter;
+    uint256 private _tokenIdCounter;
     
     struct AgentDNA {
         uint256 generation;
@@ -92,8 +89,8 @@ contract EvolutionEngine is ERC721, ERC721URIStorage, Ownable {
         require(traits.length == traitValues.length, "Trait mismatch");
         require(traits.length > 0, "No traits provided");
         
-        _tokenIdCounter.increment();
-        uint256 tokenId = _tokenIdCounter.current();
+        _tokenIdCounter++;
+        uint256 tokenId = _tokenIdCounter;
         
         _safeMint(msg.sender, tokenId);
         _setTokenURI(tokenId, uri);
@@ -136,8 +133,8 @@ contract EvolutionEngine is ERC721, ERC721URIStorage, Ownable {
         AgentDNA storage originalDNA = agentDNAs[tokenId];
         require(originalDNA.generation < evolutionParams.maxGenerations, "Max generations reached");
         
-        _tokenIdCounter.increment();
-        uint256 newTokenId = _tokenIdCounter.current();
+        _tokenIdCounter++;
+        uint256 newTokenId = _tokenIdCounter;
         
         _safeMint(msg.sender, newTokenId);
         
@@ -213,8 +210,8 @@ contract EvolutionEngine is ERC721, ERC721URIStorage, Ownable {
             "Insufficient fitness"
         );
         
-        _tokenIdCounter.increment();
-        uint256 offspringId = _tokenIdCounter.current();
+        _tokenIdCounter++;
+        uint256 offspringId = _tokenIdCounter;
         
         _safeMint(msg.sender, offspringId);
         

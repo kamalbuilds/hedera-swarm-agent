@@ -1,9 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/utils/Counters.sol";
 import "./interfaces/IHederaTokenService.sol";
 import "./interfaces/ISwarmOrchestrator.sol";
 
@@ -12,7 +11,6 @@ import "./interfaces/ISwarmOrchestrator.sol";
  * @dev Main contract for managing AI agent swarms on Hedera
  */
 contract SwarmOrchestrator is ISwarmOrchestrator, ReentrancyGuard, Ownable {
-    using Counters for Counters.Counter;
     
     // State variables
     mapping(address => Agent) public agents;
@@ -21,7 +19,7 @@ contract SwarmOrchestrator is ISwarmOrchestrator, ReentrancyGuard, Ownable {
     mapping(string => address[]) public taskAssignments;
     mapping(address => string[]) public agentActiveTasks;
     
-    Counters.Counter private taskIdCounter;
+    uint256 private taskIdCounter;
     
     uint256 public constant MIN_STAKE = 10 * 10**8; // 10 HBAR in tinybars
     uint256 public constant REPUTATION_DECAY_RATE = 1; // 1% per week
@@ -98,8 +96,8 @@ contract SwarmOrchestrator is ISwarmOrchestrator, ReentrancyGuard, Ownable {
         require(deadline > block.timestamp, "Invalid deadline");
         require(bytes(description).length > 0, "Empty description");
         
-        taskIdCounter.increment();
-        string memory taskId = string(abi.encodePacked("TASK-", uint2str(taskIdCounter.current())));
+        taskIdCounter++;
+        string memory taskId = string(abi.encodePacked("TASK-", uint2str(taskIdCounter)));
         
         tasks[taskId] = Task({
             id: taskId,

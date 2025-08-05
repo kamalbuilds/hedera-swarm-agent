@@ -1,0 +1,9 @@
+{
+  "network": "testnet",
+  "timestamp": "2025-08-05T13:08:41.627Z",
+  "contracts": {
+    "SwarmOrchestrator": "0xA6e2aD1BCfE737a21eeBb7eb1aaE893d902e88Fe",
+    "EvolutionEngine": "0x3428974Dee00fEb88fc60F2A74B0762bac2daDD6"
+  },
+  "deployer": "0x1565aF2C2eF52b4A89180684a47C5260c716AbD1"
+}
