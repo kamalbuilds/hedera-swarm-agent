@@ -1,0 +1,38 @@
+{
+  "name": "hedera-swarm",
+  "version": "1.0.0",
+  "description": "Decentralized Multi-Agent Orchestration Platform on Hedera",
+  "main": "index.js",
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "deploy:contracts:testnet": "cd contracts && npm run deploy:testnet",
+    "init:topics:testnet": "ts-node scripts/init-topics.ts",
+    "deploy:agents:testnet": "ts-node scripts/deploy-agents.ts",
+    "dashboard:dev": "cd web-interface && npm run dev"
+  },
+  "workspaces": [
+    "contracts",
+    "agent-sdk",
+    "swarm-protocol",
+    "evolution-engine",
+    "knowledge-graph",
+    "web-interface"
+  ],
+  "keywords": [
+    "hedera",
+    "blockchain",
+    "ai",
+    "agents",
+    "swarm",
+    "decentralized"
+  ],
+  "author": "HederaSwarm Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "turbo": "^1.10.0",
+    "typescript": "^5.0.0"
+  }
+}
